@@ -1,0 +1,48 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-title:hover {
+    color: green;
+}
+
+.cover-container {
+    height: 180px;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.cover-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    padding: 10px 10px;
+    box-shadow: 2px 2px 4px #bbb;
+    border-top-right-radius: 4px;
+    box-sizing: content-box;
+    max-width: 200px;
+    height: 150px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.year-block {
+    padding: 20px 20px;
+    margin: 20px 0px 20px 0px;
+    display: block;
+}
+
+.bar-el-b {
+    display: block;
+}
+
+.bar-el {
+    display: inline-block;
+    margin-right: 20px;
+}

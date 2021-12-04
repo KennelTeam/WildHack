@@ -7,6 +7,8 @@ __pycache__/
 
 # C extensions
 *.so
+launch.json
+settings.json
 
 # Distribution / packaging
 .Python

@@ -95,3 +95,4 @@ for i in range(batch_count):
     out = do(batch_step*i, batch_step*(i+1))
     df = pd.DataFrame(columns=['news_link', 'raw_timestamp', 'title', 'views_count', 'tags', 'content'], data=out)
     df.to_csv(f'scrap-kamtoday/out{i}.csv')
+    

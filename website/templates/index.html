@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="templates/index_style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="padding-left: 20px;">
+        <h2 class="bar-el">Поиск</h2>
+        <form class="bar-el">
+            <label for="query">Запрос:</label>
+            <input class="bar-el" type="text" name="query" autocomplete="off">
+            <div class="bar-el">
+                <label for="low_interest">| Низкий интерес</label>
+                <input type="checkbox" name="low_interest">
+                <label for="medium_interest">| Средний интерес</label>
+                <input type="checkbox" name="medium_interest">
+                <label for="high_interest">| Высокий интерес</label>
+                <input type="checkbox" name="high_interest">
+            </div>
+            <label for="order_by">Сортировать по:</label>
+            <select name="order_by">
+                <option value="pub_date">Дата публикации</option>
+                <option value="rating">Рейтинг</option>
+            </select>
+            <select name="order_desc">
+                <option value="1">По убыванию</option>
+                <option value="0">По возрастанию</option>
+            </select>
+            <button class="bar-el">Применить</button>
+        </form>
+    </div>
+    {% for year in years %}
+    <div class="year-block">
+        <h2 onclick="showhide_year(`{{year.num}}`)" id="year_title_{{year.num}}">{{year.num}} ▼</h2>
+        <div class=" cover-container" id="{{year.num}}">
+            {% for card in year.cards %}
+            <div class="cover-item">
+                <h3><a href="/post/{{card.id}}" class="post-title">{{card.title}}</a></h3>
+                <p>{{card.rating}}</p>
+                <p>{{card.date}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <script>
+        function showhide_year(year_num) {
+            el = document.getElementById(year_num)
+            header = document.getElementById("year_title_" + year_num)
+            console.log(header)
+            style = getComputedStyle(el)
+            if (style.display == "block") {
+                el.style.display = "none"
+                header.innerHTML = year_num + " —"
+            } else {
+                el.style.display = "block"
+                header.innerHTML = year_num + " ▼"
+            }
+        }
+    </script>
+</body>
+
+</html>
