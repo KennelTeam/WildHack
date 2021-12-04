@@ -64,7 +64,7 @@ def load_page(page_id, timeout):
             views_count = int(gspans[1].text.strip())
 
             increment_pbar()
-            pages_resp.append([raw_timestamp, title, views_count, tags, content])
+            pages_resp.append([news_link, raw_timestamp, title, views_count, tags, content])
         return pages_resp
 
     except Exception as e:
@@ -93,6 +93,6 @@ locale.setlocale(locale.LC_TIME, 'ru_RU.UTF-8')  # the ru locale is installed
 increment_pbar()
 for i in range(batch_count):
     out = do(batch_step*i, batch_step*(i+1))
-    df = pd.DataFrame(columns=['news_id', 'timestamp', 'title', 'thumbnail_link', 'content'], data=out)
+    df = pd.DataFrame(columns=['news_link', 'raw_timestamp', 'title', 'views_count', 'tags', 'content'], data=out)
     df.set_index('news_id')
     df.to_csv(f'scrap-kamtoday/out{i}.csv')
