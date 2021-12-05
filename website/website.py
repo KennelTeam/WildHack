@@ -95,7 +95,7 @@ def show_post(id: int):
 
 @app.route('/groups')
 def groups():
-    res = json.loads(open("../groups.json").read())
+    res = json.loads(open("../groups.json", encoding='utf-8').read())
     return render_template('groups.html', groups=res)
 
 
