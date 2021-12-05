@@ -32,3 +32,27 @@ p {
 .rating-val {
     padding-left: 5px;
 }
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.bar-el {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: green;
+}
+
+.groups-link {
+    margin-left: 50px;
+}
