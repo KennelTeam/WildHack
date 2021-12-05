@@ -31,14 +31,14 @@
         <div class="image_div">
         <div class="cards-container ">
             {% for news in group.news%}
-            <div class="news-card " style="width: 200px;">
-                <h3>
+            <div class="news-card ">
+                <h4 class="title_card">
                     <div class="link_div">
-                        <a href="/post/{{news.id}} ">{{news.title}}</a>
+                        <a href="/post/{{news.id}} "><p class="multiline">{{news.title}}</p></a>
                     </div>
-                </h3>
-<!--                <h4>{{news.rating}}</h4>-->
-<!--                <h5>{{news.date}}</h5>-->
+                </h4>
+                <h4>{{news.rating}}</h4>
+                <h5>{{news.date}}</h5>
             </div>
             {% endfor %}
         </div>
