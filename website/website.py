@@ -35,12 +35,13 @@ def main_page():
         interests = [True, True, True]
 
     data = all_data
-    pprint.pprint(data['title'])
+
     if 'query' in query_args:
         query = query_args['query']
         keywords_list = ["#" + keyword for keyword in query.split()]
-        data = search(make_keywords_query(keywords_list))
-        if data != {}:
+        data_ = search(make_keywords_query(keywords_list))
+        if data_ != {}:
+            data = data_
             data = list(map(lambda x: x['_source'], data))
             data = pd.DataFrame(data)
 
@@ -79,6 +80,7 @@ def main_page():
             'num': year,
             'cards': cards
         })
+        years = years[::-1]
 
     return render_template('index.html', years=years)
 
@@ -86,7 +88,7 @@ def main_page():
 @app.route('/post/<id>')
 def show_post(id: int):
     id = int(id)
-    cur_el = all_data.iloc[id]
+    cur_el = data.iloc[id]
     return render_template('post.html', title=cur_el['title'],
                            date=cur_el['raw_timestamp'],
                            rating=cur_el['views_count'],
@@ -95,13 +97,26 @@ def show_post(id: int):
 
 @app.route('/groups')
 def groups():
+    global data
+    query_args = request.args.to_dict()
+
+    data = all_data
+
+    if 'query' in query_args:
+        query = query_args['query']
+        keywords_list = ["#" + keyword for keyword in query.split()]
+        data = search(make_keywords_query(keywords_list))
+        if data != {}:
+            data = list(map(lambda x: x['_source'], data))
+            data = pd.DataFrame(data)
+
     inp_groups = json.loads(open("../groups.json").read())
     res_groups = []
     for inp_group in inp_groups:
         filename = inp_group['filename']
         cur_posts = []
         for post in inp_group['links']:
-            df_post = all_data.loc[post['id']]
+            df_post = data.loc[post['id']]
             post_res = {
                 'id': post['id'],
                 'title': df_post['title'],
@@ -113,7 +128,7 @@ def groups():
             'filename': filename,
             'news': cur_posts
         })
-        pprint(res_groups[0])
+        # pprint(res_groups[0])
     return render_template('groups.html', groups=res_groups)
 
 
