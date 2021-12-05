@@ -2,7 +2,7 @@ import flask
 from flask import render_template, request
 from flask.scaffold import F
 import pandas as pd
-
+import os
 app = flask.Flask(__name__, static_folder='templates')
 app.config['DEBUG'] = True
 all_data = pd.read_csv('../entire-kamtoday.csv', index_col='id')
@@ -65,3 +65,6 @@ def show_post(id: int):
                            date=cur_el['raw_timestamp'],
                            rating=cur_el['views_count'],
                            content=cur_el['content'])
+
+if __name__ == "__main__":
+    app.run()
