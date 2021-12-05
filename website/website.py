@@ -1,11 +1,12 @@
+import pprint
+
 import flask
 from flask import render_template, request, send_from_directory, redirect
 from flask.scaffold import F
 import pandas as pd
 import os
 from elastic_search import *
-
-
+import json
 
 app = flask.Flask(__name__, static_folder='templates')
 app.config['DEBUG'] = True
@@ -16,6 +17,7 @@ data: pd.DataFrame
 @app.route('/')
 def default_page():
     return redirect('/cards')
+
 
 @app.route('/cards')
 def main_page():
@@ -34,12 +36,12 @@ def main_page():
         interests = [True, True, True]
 
     data = all_data
-    pprint.pprint(data['title'])
     if 'query' in query_args:
         query = query_args['query']
         keywords_list = ["#" + keyword for keyword in query.split()]
         data = search(make_keywords_query(keywords_list))
         if data != {}:
+            pprint.pprint(data)
             data = list(map(lambda x: x['_source'], data))
             data = pd.DataFrame(data)
 
@@ -93,62 +95,14 @@ def show_post(id: int):
 
 @app.route('/groups')
 def groups():
-    return render_template('groups.html', groups=[
-        {
-            'img_link': '/imgs/1.jpg',
-            'news': [
-                {
-                    'id': 1,
-                    'title': 'azaza'
-                },
-                {
-                    'id': 2,
-                    'title': 'dudddudud'
-                },
-                {
-                    'id': 3,
-                    'title': 'looooooool'
-                },
-                {
-                    'id': 11,
-                    'title': 'lolkekcheburek'
-                },
-                {
-                    'id': 345,
-                    'title': 'elonmusk krutoy o da ochen silno krutoy'
-                },
-            ]
-        },
-        {
-            'img_link': '/imgs/1.jpg',
-            'news': [
-                {
-                    'id': 1,
-                    'title': 'azaza'
-                },
-                {
-                    'id': 2,
-                    'title': 'dudddudud'
-                },
-                {
-                    'id': 3,
-                    'title': 'looooooool'
-                },
-                {
-                    'id': 11,
-                    'title': 'lolkekcheburek'
-                },
-                {
-                    'id': 345,
-                    'title': 'elonmusk krutoy o da ochen silno krutoy'
-                },
-            ]
-        }
-    ])
+    res = json.loads(open("../groups.json").read())
+    return render_template('groups.html', groups=res)
 
-@app.route('/imgs/<path>')
+
+@app.route('/output_wordclouds/<path>')
 def get_image(path):
-   return send_from_directory(directory='imgs', path=path)
+    return send_from_directory(directory='output_wordclouds', path=path)
+
 
 if __name__ == "__main__":
     app.run()
