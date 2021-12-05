@@ -27,7 +27,7 @@
     <div>
         <img src="{{group.filename}} " class="imgwords ">
         <div class="cards-container ">
-            {% for news in group.links%}
+            {% for news in group.news %}
             <div class="news-card ">
                 <h3><a class="news-title " href="/post/{{news.id}} ">{{news.title}}</a></h3>
                 <h4>{{news.rating}}</h4>
