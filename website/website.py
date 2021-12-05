@@ -45,6 +45,7 @@ def main_page():
             data = data_
             data = list(map(lambda x: x['_source'], data))
             data = pd.DataFrame(data)
+            data = data[::-1]
 
     years = []
     for year in data['year'].unique():
@@ -80,7 +81,6 @@ def main_page():
             'num': year,
             'cards': cards
         })
-        years = years[::-1]
 
     return render_template('index.html', years=years)
 
