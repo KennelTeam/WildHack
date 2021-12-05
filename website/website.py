@@ -99,10 +99,21 @@ def show_post(id: int):
 def groups():
     global data
 
+    query_args = request.args
+
+    print(query_args)
+
+    query = ""
+    if 'query ' in query_args:
+        query = query_args['query ']
+        print(query)
+
     data = all_data
 
     res_groups = []
     for inp_group in inp_groups:
+        if query != "" and query not in inp_group["keywords"]:
+            continue
         cur_posts = []
         for post in inp_group['links']:
             df_post = data.loc[post['id']]
