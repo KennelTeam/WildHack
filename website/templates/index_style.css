@@ -87,7 +87,6 @@ button:focus {
     margin-left: 50px;
 }
 
-
 .title_card {
     word-break: break-all;
     overflow-x: hidden;
@@ -123,7 +122,6 @@ button:focus {
 }
 
 .multiline {
-
     width: 100%;
     white-space: pre-wrap;
     word-break: normal;
@@ -137,11 +135,13 @@ button:focus {
     height: 240px;
     white-space: nowrap;
 }
+
 .news-title {
     word-break: break-all;
     height: 100%;
     width: 200px;
 }
+
 .news-title:hover {
     color: green;
 }
