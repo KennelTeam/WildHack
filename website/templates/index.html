@@ -10,29 +10,29 @@
 </head>
 
 <body>
-    <div style="padding-left: 20px;">
+    <div class="search-panel">
         <h2 class="bar-el">Поиск</h2>
         <form class="bar-el">
             <label for="query">Запрос:</label>
             <input class="bar-el" type="text" name="query" autocomplete="off">
             <div class="bar-el">
-                <label for="low_interest">| Низкий интерес</label>
+                <label for="low_interest" class="ch">| Низкий интерес</label>
                 <input type="checkbox" name="low_interest">
-                <label for="medium_interest">| Средний интерес</label>
+                <label for="medium_interest" class="ch">| Средний интерес</label>
                 <input type="checkbox" name="medium_interest">
-                <label for="high_interest">| Высокий интерес</label>
+                <label for="high_interest" class="ch">| Высокий интерес</label>
                 <input type="checkbox" name="high_interest">
             </div>
             <label for="order_by">Сортировать по:</label>
-            <select name="order_by">
+            <select name="order_by" class="bar-el">
                 <option value="pub_date">Дата публикации</option>
                 <option value="rating">Рейтинг</option>
             </select>
-            <select name="order_desc">
+            <select name="order_desc" class="bar-el">
                 <option value="1">По убыванию</option>
                 <option value="0">По возрастанию</option>
             </select>
-            <button class="bar-el">Применить</button>
+            <button class="bar-el ssub">Применить</button>
         </form>
     </div>
     {% for year in years %}

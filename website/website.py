@@ -11,8 +11,8 @@ all_data = pd.read_csv('../entire-kamtoday.csv', index_col='id')
 @app.route('/')
 def main_page():
     query_args = request.args
-    order_by = query_args['order_by']
-    order_desc = query_args['order_desc'] == '1'
+    order_by = query_args['order_by'] if 'order_by' in query_args else 'pub_date'
+    order_desc = query_args['order_desc'] == '1' if 'order_desc' in query_args else '1'
     interests = [False, False, False]
     if 'low_interest' in query_args:
         interests[0] = True

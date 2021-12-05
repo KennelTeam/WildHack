@@ -34,7 +34,7 @@ a {
 
 .year-block {
     padding: 20px 20px;
-    margin: 20px 0px 20px 0px;
+    margin-bottom: 20px;
     display: block;
 }
 
@@ -44,5 +44,26 @@ a {
 
 .bar-el {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+button,
+select {
+    background: white;
+    border: solid 1px;
+    padding: 5px 10px;
+}
+
+button:focus {
+    background: whitesmoke;
+}
+
+.search-panel {
+    margin-left: 20px;
+    font-size: 12pt;
+}
+
+.ssub {
+    margin-left: 10px;
 }

@@ -1,3 +1,7 @@
 .post-container {
     padding: 0 20%;
 }
+
+p {
+    line-height: 18pt;
+}
