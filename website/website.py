@@ -1,5 +1,3 @@
-import pprint
-
 import flask
 from flask import render_template, request, send_from_directory, redirect
 from flask.scaffold import F
@@ -36,12 +34,12 @@ def main_page():
         interests = [True, True, True]
 
     data = all_data
+    pprint.pprint(data['title'])
     if 'query' in query_args:
         query = query_args['query']
         keywords_list = ["#" + keyword for keyword in query.split()]
         data = search(make_keywords_query(keywords_list))
         if data != {}:
-            pprint.pprint(data)
             data = list(map(lambda x: x['_source'], data))
             data = pd.DataFrame(data)
 
@@ -65,6 +63,8 @@ def main_page():
 
         if order_desc:
             toshow = toshow.iloc[::-1]
+
+        toshow = toshow.drop_duplicates()
         cards = []
         for _, el in toshow.iterrows():
             mapped = {

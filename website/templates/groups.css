@@ -43,6 +43,8 @@ a:hover {
     padding: 5px 10px;
     overflow-x: hidden;
     overflow-y: hidden;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .cards-container {
