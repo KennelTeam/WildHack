@@ -19,7 +19,8 @@
         <h2 class="bar-el ">Поиск</h2>
         <form class="bar-el ">
             <label for="query ">по ключевым словам:</label>
-            <input class="bar-el " type="text" name="query " autocomplete="off ">
+            <input class="bar-el " type="text" name="query " autocomplete="off "
+                   value="{{ request.args['query '] if 'query ' in request.args else ''}}">
             <button class="bar-el ">Применить</button>
         </form>
     </div>

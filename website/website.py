@@ -37,6 +37,13 @@ def main_page():
 
     data = all_data
 
+    r = {
+        "query": query_args['query'] if 'query' in query_args else "",
+        "interests": interests,
+        "order_desc": int(order_desc),
+        "order_by": order_by
+    }
+
     if 'query' in query_args:
         query = query_args['query']
         keywords_list = ["#" + keyword for keyword in query.split()]
@@ -82,7 +89,7 @@ def main_page():
             'cards': cards
         })
 
-    return render_template('index.html', years=years)
+    return render_template('index.html', years=years, request=r)
 
 
 @app.route('/post/<id>')
@@ -99,10 +106,21 @@ def show_post(id: int):
 def groups():
     global data
 
+    query_args = request.args
+
+    print(query_args)
+
+    query = ""
+    if 'query ' in query_args:
+        query = query_args['query ']
+        print(query)
+
     data = all_data
 
     res_groups = []
     for inp_group in inp_groups:
+        if query != "" and query not in inp_group["keywords"]:
+            continue
         cur_posts = []
         for post in inp_group['links']:
             df_post = data.loc[post['id']]
@@ -121,7 +139,7 @@ def groups():
 
     res_groups = sorted(res_groups, key=lambda x: len(x['news']), reverse=True)
 
-    return render_template('groups.html', groups=res_groups)
+    return render_template('groups.html', groups=res_groups, request=request)
 
 
 @app.route('/output_wordclouds/<path>')
