@@ -91,6 +91,21 @@ a:hover {
     color: green;
 }
 
+
+.multiline {
+    white-space: pre-wrap;
+    word-break: normal;
+}
+
+.news-title h3 {
+    height: 40%;
+    overflow-y: hidden;
+}
+
+.news-card h4 {
+    color: green;
+}
+
 .nav-bar {
     display: flex;
     justify-content: center;

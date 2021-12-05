@@ -25,11 +25,11 @@
     </div>
     {% for group in groups %}
     <div>
-        <a href="/group/{{group.id}}"><img src="{{group.filename}} " class="imgwords "></a>
+        <a href="/group/{{group.id}}"><img src="/{{group.filename}} " class="imgwords "></a>
         <div class="cards-container ">
             {% for news in group.news %}
             <div class="news-card ">
-                <h3><a class="news-title " href="/post/{{news.id}} ">{{news.title}}</a></h3>
+                <h3><a class="news-title " href="/post/{{news.id}} "><p class="multiline">{{news.title}}</p></a></h3>
                 <h4>{{news.rating}}</h4>
                 <h5>{{news.date}}</h5>
             </div>
