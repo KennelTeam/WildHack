@@ -12,8 +12,10 @@
 <body>
     <div class="post-container">
         <h1>{{title}}</h1>
-        <h3>{{date}}</h3>
-        <h3>{{rating}}</h3>
+        <div class="info">
+            <span class="pubdate-cell"><h3>Опубликовано:</h3><h3 class="pubdate-val">{{date}}</h3></span>
+            <span class="rating-cell"><h3 class="rating">Рейтинг:</h3><h3 class="rating-val">{{rating}}</h3></span>
+        </div>
         <p>{{content}}</p>
     </div>
 </body>

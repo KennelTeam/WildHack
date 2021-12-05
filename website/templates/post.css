@@ -1,7 +1,34 @@
 .post-container {
-    padding: 0 20%;
+    padding: 0 25%;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    display: inline-block;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+}
+
+.rating {
+    margin-left: 100px;
 }
 
 p {
     line-height: 18pt;
+}
+
+.pubdate-cell:hover,
+.rating-cell:hover {
+    color: green;
+}
+
+.pubdate-val,
+.rating-val {
+    padding-left: 5px;
 }

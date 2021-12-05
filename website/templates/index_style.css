@@ -67,3 +67,8 @@ button:focus {
 .ssub {
     margin-left: 10px;
 }
+
+.rating {
+    color: green;
+    font-size: inherit;
+}

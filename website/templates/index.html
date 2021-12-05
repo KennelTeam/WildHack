@@ -42,7 +42,7 @@
             {% for card in year.cards %}
             <div class="cover-item">
                 <h3><a href="/post/{{card.id}}" class="post-title">{{card.title}}</a></h3>
-                <p>{{card.rating}}</p>
+                <h5 class="rating">{{card.rating}}</h5>
                 <p>{{card.date}}</p>
             </div>
             {% endfor %}
