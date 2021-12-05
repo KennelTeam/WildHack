@@ -79,6 +79,7 @@ a:hover {
     margin-left: 1%;
     height: 240px;
     white-space: nowrap;
+    z-index: 0;
 }
 
 .news-title {
@@ -98,4 +99,9 @@ a:hover {
 
 .groups-link {
     margin-left: 50px;
+}
+
+.iwholder:hover {
+    box-shadow: 8px 8px grey;
+    z-index: 99;
 }
