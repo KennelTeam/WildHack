@@ -45,6 +45,8 @@ def main_page():
         
         if order_desc:
             toshow = toshow.iloc[::-1]
+
+        toshow = toshow.drop_duplicates()
         cards = []
         for _, el in toshow.iterrows():
             mapped = {
@@ -79,23 +81,39 @@ def groups():
             'news': [
                 {
                     'id': 1,
-                    'title': 'azaza'
+                    'title': 'azaza',
+                    'date': '12 декабря 2025',
+                    'rating':  100,
+                    'content': 'biibasuifdshfhdosifhiodsfhiosdfiohiohfdshoiio'
                 },
                 {
                     'id': 2,
-                    'title': 'dudddudud'
+                    'title': 'dudddudud',
+                    'date': '12 декабря 2025',
+                    'rating':  100,
+                    'content': 'biibasuifdshfhdosifhiodsfhiosdfiohiohfdshoiio'
+                    
                 },
                 {
                     'id': 3,
-                    'title': 'looooooool'
+                    'title': 'looooooool',
+                    'date': '12 декабря 2025',
+                    'rating':  100,
+                    'content': 'biibasuifdshfhdosifhiodsfhiosdfiohiohfdshoiio'
                 },
                 {
                     'id': 11,
-                    'title': 'lolkekcheburek'
+                    'title': 'lolkekcheburek',
+                    'date': '12 декабря 2025',
+                    'rating':  100,
+                    'content': 'biibasuifdshfhdosifhiodsfhiosdfiohiohfdshoiio'
                 },
                 {
                     'id': 345,
-                    'title': 'elonmusk krutoy o da ochen silno krutoy'
+                    'title': 'elonmusk krutoy o da ochen silno krutoy',
+                    'date': '12 декабря 2025',
+                    'rating':  100,
+                    'content': 'biibasuifdshfhdosifhiodsfhiosdfiohiohfdshoiio'
                 },
             ]
         },
