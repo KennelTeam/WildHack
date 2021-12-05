@@ -13,21 +13,21 @@
     <div class="nav-bar">
         <h2 class="bar-el hov-link">
             <a href="/cards" style="text-decoration: underline;">Карточки</a></h2>
-        <h2 class=" bar-el groups-link hov-link "><a href="/groups ">Группы</a></h2>
+        <h2 class=" bar-el groups-link hov-link "><a href="/groups">Группы</a></h2>
     </div>
     <div class="search-panel ">
         <h2 class="bar-el ">Поиск</h2>
         <form class="bar-el ">
             <label for="query ">по ключевым словам:</label>
-            <input class="bar-el " type="text " name="query " autocomplete="off ">
+            <input class="bar-el " type="text" name="query " autocomplete="off ">
             <button class="bar-el ">Применить</button>
         </form>
     </div>
     {% for group in groups %}
     <div>
-        <img src="{{group.img_link}} " class="imgwords ">
+        <img src="{{group.filename}} " class="imgwords ">
         <div class="cards-container ">
-            {% for news in group.news%}
+            {% for news in group.links%}
             <div class="news-card ">
                 <h3><a class="news-title " href="/post/{{news.id}} ">{{news.title}}</a></h3>
             </div>
