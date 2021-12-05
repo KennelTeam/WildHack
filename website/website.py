@@ -5,6 +5,7 @@ import pandas as pd
 import os
 from elastic_search import *
 import json
+from pprint import pprint
 
 app = flask.Flask(__name__, static_folder='templates')
 app.config['DEBUG'] = True
@@ -34,7 +35,7 @@ def main_page():
         interests = [True, True, True]
 
     data = all_data
-    pprint.pprint(data['title'])
+    pprint(data['title'])
     if 'query' in query_args:
         query = query_args['query']
         keywords_list = ["#" + keyword for keyword in query.split()]
@@ -84,9 +85,8 @@ def main_page():
 
 @app.route('/post/<id>')
 def show_post(id: int):
-    global data
     id = int(id)
-    cur_el = data.iloc[id]
+    cur_el = all_data.iloc[id]
     return render_template('post.html', title=cur_el['title'],
                            date=cur_el['raw_timestamp'],
                            rating=cur_el['views_count'],
@@ -95,8 +95,25 @@ def show_post(id: int):
 
 @app.route('/groups')
 def groups():
-    res = json.loads(open("../groups.json", encoding='utf-8').read())
-    return render_template('groups.html', groups=res)
+    inp_groups = json.loads(open("../groups.json", encoding='utf-8').read())
+    res_groups = []
+    for inp_group in inp_groups:
+        filename = inp_group['filename']
+        cur_posts = []
+        for post in inp_group['links']:
+            df_post = all_data.loc[post['id']]
+            post_res = {
+                'id': post['id'],
+                'title': df_post['title'],
+                'date': df_post['raw_timestamp'],
+                'rating': df_post['views_count']
+            }
+            cur_posts.append(post_res)
+        res_groups.append({
+            'filename': filename,
+            'news': cur_posts
+        })
+    return render_template('groups.html', groups=res_groups)
 
 
 @app.route('/output_wordclouds/<path>')
@@ -106,3 +123,4 @@ def get_image(path):
 
 if __name__ == "__main__":
     app.run()
+    # load_data_from_csv()
