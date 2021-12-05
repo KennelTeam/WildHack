@@ -27,15 +27,9 @@ a:hover {
 }
 
 .imgwords {
-    width: 20%;
-    height: 20%;
+    width: 25%;
+    height: 25%;
     margin: 20px;
-}
-
-.group_div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .news-card {
@@ -98,4 +92,14 @@ a:hover {
 
 .groups-link {
     margin-left: 50px;
+}
+
+.image_div {
+    display: flex;
+    justify-content: center;
+}
+
+.news-div {
+    display: flex;
+    justify-content: center;
 }

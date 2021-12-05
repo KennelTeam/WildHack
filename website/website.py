@@ -5,12 +5,13 @@ import pandas as pd
 import os
 from elastic_search import *
 import json
-from pprint import pprint
+import pprint
 
 app = flask.Flask(__name__, static_folder='templates')
 app.config['DEBUG'] = True
 all_data = pd.read_csv('../entire-kamtoday.csv', index_col='id')
 data: pd.DataFrame
+inp_groups = json.loads(open("../groups.json", encoding='utf-8').read())
 
 
 @app.route('/')
@@ -35,12 +36,13 @@ def main_page():
         interests = [True, True, True]
 
     data = all_data
-    pprint.pprint(data['title'])
+
     if 'query' in query_args:
         query = query_args['query']
         keywords_list = ["#" + keyword for keyword in query.split()]
-        data = search(make_keywords_query(keywords_list))
-        if data != {}:
+        data_ = search(make_keywords_query(keywords_list))
+        if data_ != {}:
+            data = data_
             data = list(map(lambda x: x['_source'], data))
             data = pd.DataFrame(data)
 
@@ -54,13 +56,12 @@ def main_page():
             cur_year = cur_year.sort_values(by=['views_count'])
         pc = cur_year.shape[0]  # posts count
         toshow = pd.DataFrame(columns=cur_year.columns)
-        # if interests[0]:
-        #     toshow = toshow.append(cur_year.iloc[:pc // 3])
-        # if interests[1]:
-        #     toshow = toshow.append(cur_year.iloc[pc // 3:pc * 3 // 4])
-        # if interests[2]:
-        #     toshow = toshow.append(cur_year.iloc[pc * 3 // 4:])
-        toshow = cur_year
+        if interests[0]:
+            toshow = toshow.append(cur_year.iloc[:pc // 3])
+        if interests[1]:
+            toshow = toshow.append(cur_year.iloc[pc // 3:pc * 3 // 4])
+        if interests[2]:
+            toshow = toshow.append(cur_year.iloc[pc * 3 // 4:])
 
         if order_desc:
             toshow = toshow.iloc[::-1]
@@ -79,6 +80,7 @@ def main_page():
             'num': year,
             'cards': cards
         })
+        years = years[::-1]
 
     return render_template('index.html', years=years)
 
@@ -86,7 +88,7 @@ def main_page():
 @app.route('/post/<id>')
 def show_post(id: int):
     id = int(id)
-    cur_el = all_data.iloc[id]
+    cur_el = data.iloc[id]
     return render_template('post.html', title=cur_el['title'],
                            date=cur_el['raw_timestamp'],
                            rating=cur_el['views_count'],
@@ -95,13 +97,15 @@ def show_post(id: int):
 
 @app.route('/groups')
 def groups():
-    inp_groups = json.loads(open("../groups.json").read())
+    global data
+
+    data = all_data
+
     res_groups = []
     for inp_group in inp_groups:
-        filename = inp_group['filename']
         cur_posts = []
         for post in inp_group['links']:
-            df_post = all_data.loc[post['id']]
+            df_post = data.loc[post['id']]
             post_res = {
                 'id': post['id'],
                 'title': df_post['title'],
@@ -110,16 +114,42 @@ def groups():
             }
             cur_posts.append(post_res)
         res_groups.append({
-            'filename': filename,
+            'id': inp_group['group_id'],
+            'filename': inp_group['filename'],
             'news': cur_posts
         })
-        pprint(res_groups[0])
+
+    res_groups = sorted(res_groups, key=lambda x: len(x['news']), reverse=True)
+
     return render_template('groups.html', groups=res_groups)
 
 
 @app.route('/output_wordclouds/<path>')
 def get_image(path):
-    return send_from_directory(directory='output_wordclouds', path=path)
+    return send_from_directory(directory='../output_wordclouds', path=path)
+
+
+@app.route('/group/<id>')
+def get_group(id):
+    id = int(id)
+    group = next(filter(lambda group: group['group_id'] == id, inp_groups))
+    cur_posts = []
+    for post in group['links']:
+        df_post = all_data.loc[post['id']]
+        post_res = {
+            'id': post['id'],
+            'title': df_post['title'],
+            'date': df_post['raw_timestamp'],
+            'rating': df_post['views_count']
+        }
+        cur_posts.append(post_res)
+    res = {
+        'id': group['group_id'],
+        'filename': group['filename'],
+        'news': cur_posts
+    }
+
+    return render_template('single-group.html', group=res)
 
 
 if __name__ == "__main__":

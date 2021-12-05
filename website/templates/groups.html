@@ -25,7 +25,7 @@
     </div>
     {% for group in groups %}
     <div>
-        <img src="{{group.filename}} " class="imgwords ">
+        <a href="/group/{{group.id}}"><img src="{{group.filename}} " class="imgwords "></a>
         <div class="cards-container ">
             {% for news in group.news %}
             <div class="news-card ">

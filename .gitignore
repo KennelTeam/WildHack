@@ -1,4 +1,6 @@
-
+.idea
+groups.json
+website/output_wordclouds/
 *.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -10,6 +12,7 @@ __pycache__/
 launch.json
 settings.json
 *.json
+*.png
 
 # Distribution / packaging
 .Python
