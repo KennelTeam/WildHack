@@ -37,6 +37,13 @@ def main_page():
 
     data = all_data
 
+    r = {
+        "query": query_args['query'] if 'query' in query_args else "",
+        "interests": interests,
+        "order_desc": int(order_desc),
+        "order_by": order_by
+    }
+
     if 'query' in query_args:
         query = query_args['query']
         keywords_list = ["#" + keyword for keyword in query.split()]
@@ -82,7 +89,7 @@ def main_page():
             'cards': cards
         })
 
-    return render_template('index.html', years=years)
+    return render_template('index.html', years=years, request=r)
 
 
 @app.route('/post/<id>')
@@ -132,7 +139,7 @@ def groups():
 
     res_groups = sorted(res_groups, key=lambda x: len(x['news']), reverse=True)
 
-    return render_template('groups.html', groups=res_groups)
+    return render_template('groups.html', groups=res_groups, request=request)
 
 
 @app.route('/output_wordclouds/<path>')
