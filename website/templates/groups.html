@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="templates/groups.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="search-panel">
+        <h2 class="bar-el">Поиск</h2>
+        <form class="bar-el">
+            <label for="query">по ключевым словам:</label>
+            <input class="bar-el" type="text" name="query" autocomplete="off">
+            <button class="bar-el">Применить</button>
+        </form>
+    </div>
+    {% for group in groups %}
+    <div>
+        <img src="{{group.img_link}}" class="imgwords">
+        <div class="cards-container">
+            {% for news in group.news%}
+            <div class="news-card">
+                <h3><a class="news-title" href="/post/{{news.id}}">{{news.title}}</a></h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
