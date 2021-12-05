@@ -124,3 +124,4 @@ def get_image(path):
 
 if __name__ == "__main__":
     app.run()
+    # load_data_from_csv()

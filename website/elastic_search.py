@@ -4,7 +4,7 @@ import pprint
 
 es = Elasticsearch([{'host': '127.0.0.1', 'port': 9200}])
 
-news_index = 'test11'
+news_index = 'test12'
 
 
 def load_data_from_csv():
@@ -16,7 +16,7 @@ def load_data_from_csv():
                 'id': int(row['id']),
                 'news_link': row['news_link'],
                 'raw_timestamp': row['raw_timestamp'],
-                'title': row['raw_timestamp'],
+                'title': row['title'],
                 'views_count': int(row['views_count']),
                 'tags': row['tags'],
                 'content': row['content'],
