@@ -21,6 +21,10 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    color: green;
+}
+
 .imgwords {
     display: inline-block;
     width: 20%;
@@ -53,4 +57,13 @@ a {
 
 .news-title:hover {
     color: green;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.groups-link {
+    margin-left: 50px;
 }

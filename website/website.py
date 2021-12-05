@@ -1,5 +1,5 @@
 import flask
-from flask import render_template, request, send_from_directory
+from flask import render_template, request, send_from_directory, redirect
 from flask.scaffold import F
 import pandas as pd
 import os
@@ -8,11 +8,13 @@ app = flask.Flask(__name__, static_folder='templates')
 app.config['DEBUG'] = True
 all_data = pd.read_csv('../entire-kamtoday.csv', index_col='id')
 
-
 @app.route('/')
+def default_page():
+    return redirect('/cards')
+
+@app.route('/cards')
 def main_page():
     query_args = request.args
-    query_args['query']
     order_by = query_args['order_by'] if 'order_by' in query_args else 'pub_date'
     order_desc = query_args['order_desc'] == '1' if 'order_desc' in query_args else '1'
     interests = [False, False, False]

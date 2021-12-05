@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    <div class="nav-bar">
+        <h2 class="bar-el hov-link"><a href="/years">Карточки</a></h2>
+        <h2 class="bar-el groups-link hov-link"><a href="/groups">Группы</a></h2>
+    </div>
     <div class="search-panel">
         <h2 class="bar-el">Поиск</h2>
         <form class="bar-el">
@@ -42,7 +46,7 @@
             {% for card in year.cards %}
             <div class="cover-item">
                 <h3><a href="/post/{{card.id}}" class="post-title">{{card.title}}</a></h3>
-                <h5 class="rating">{{card.rating}}</h5>
+                <h5 class="rating hov-link">{{card.rating}}</h5>
                 <p>{{card.date}}</p>
             </div>
             {% endfor %}
