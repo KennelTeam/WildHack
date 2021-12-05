@@ -1,11 +1,10 @@
-import pprint
-
 import flask
-from flask import render_template, request
+from flask import render_template, request, send_from_directory, redirect
 from flask.scaffold import F
 import pandas as pd
 import os
 from elastic_search import *
+
 
 
 app = flask.Flask(__name__, static_folder='templates')
@@ -15,6 +14,10 @@ data: pd.DataFrame
 
 
 @app.route('/')
+def default_page():
+    return redirect('/cards')
+
+@app.route('/cards')
 def main_page():
     global data
     query_args = request.args
@@ -87,6 +90,65 @@ def show_post(id: int):
                            rating=cur_el['views_count'],
                            content=cur_el['content'])
 
+
+@app.route('/groups')
+def groups():
+    return render_template('groups.html', groups=[
+        {
+            'img_link': '/imgs/1.jpg',
+            'news': [
+                {
+                    'id': 1,
+                    'title': 'azaza'
+                },
+                {
+                    'id': 2,
+                    'title': 'dudddudud'
+                },
+                {
+                    'id': 3,
+                    'title': 'looooooool'
+                },
+                {
+                    'id': 11,
+                    'title': 'lolkekcheburek'
+                },
+                {
+                    'id': 345,
+                    'title': 'elonmusk krutoy o da ochen silno krutoy'
+                },
+            ]
+        },
+        {
+            'img_link': '/imgs/1.jpg',
+            'news': [
+                {
+                    'id': 1,
+                    'title': 'azaza'
+                },
+                {
+                    'id': 2,
+                    'title': 'dudddudud'
+                },
+                {
+                    'id': 3,
+                    'title': 'looooooool'
+                },
+                {
+                    'id': 11,
+                    'title': 'lolkekcheburek'
+                },
+                {
+                    'id': 345,
+                    'title': 'elonmusk krutoy o da ochen silno krutoy'
+                },
+            ]
+        }
+    ])
+
+@app.route('/imgs/<path>')
+def get_image(path):
+   return send_from_directory(directory='imgs', path=path)
 
 if __name__ == "__main__":
     app.run()

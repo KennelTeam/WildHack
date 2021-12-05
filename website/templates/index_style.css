@@ -3,7 +3,7 @@ a {
     color: inherit;
 }
 
-.post-title:hover {
+.hov-link:hover {
     color: green;
 }
 
@@ -71,4 +71,13 @@ button:focus {
 .rating {
     color: green;
     font-size: inherit;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.groups-link {
+    margin-left: 50px;
 }

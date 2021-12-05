@@ -1,0 +1,69 @@
+.bar-el {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.search-panel {
+    margin-left: 20px;
+    font-size: 16pt;
+}
+
+button {
+    background: white;
+    border: solid 1px;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: green;
+}
+
+.imgwords {
+    display: inline-block;
+    width: 30%;
+    height: 30%;
+    vertical-align: top;
+}
+
+.news-card {
+    display: inline-block;
+    background: white;
+    border: solid whitesmoke;
+    height: inherit;
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.cards-container {
+    display: inline-block;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 60%;
+    margin-left: 5%;
+    height: 240px;
+    white-space: nowrap;
+}
+
+.news-title:hover {
+    color: green;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.groups-link {
+    margin-left: 50px;
+}
