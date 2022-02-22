@@ -6,6 +6,15 @@ The task this project solving is processing and classifing news about Kamchatka.
 
 As input data we receivedseveral thousands of news and as output we were required to structurize this news in a way that future newswriters could access the desired news easier.
 
+We checked these news sites:
+- kam-kray.ru
+- kamtoday.ru
+- kamchatinfo.com
+- kam24.ru
+- kronoki.ru
+
+And decided to use kamtoday.ru
+
 ## How to use
 
 1. Clone this repo
