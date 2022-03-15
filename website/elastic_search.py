@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch, helpers
 import csv
 import pprint
 
-es = Elasticsearch([{'host': '127.0.0.1', 'port': 9200}])
+es = Elasticsearch([{'host': '127.0.0.1', 'port': 9200, 'scheme': 'http'}])
 
 news_index = 'test12'
 
