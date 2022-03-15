@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/templates/single-group.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <h2 class="bar-el hov-link">
+            <a href="/cards">Карточки</a></h2>
+        <h2 class=" bar-el groups-link hov-link "><a href="/groups">Группы</a></h2>
+    </div>
+    <div class="image_div">
+        <img src="/{{group.filename}} " class="imgwords">
+    </div>
+    <div class="news-div">
+        <div class="cards-container ">
+            {% for news in group.news%}
+            <div class="news-card " style="width: 200px;">
+                <h3>
+                    <a href="/post/{{news.id}} ">{{news.title}}</a>
+                </h3>
+                <h4>{{news.rating}}</h4>
+                <h5>{{news.date}}</h5>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

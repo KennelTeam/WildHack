@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="templates/index_style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <h2 class="bar-el hov-link"><a href="/cards" style="text-decoration: underline;">Карточки</a></h2>
+        <h2 class="bar-el groups-link hov-link"><a href="/groups">Группы</a></h2>
+    </div>
+    <div class="search-panel">
+        <h2 class="bar-el">Поиск</h2>
+        <form class="bar-el">
+            <label for="query">Запрос:</label>
+            <input class="bar-el" type="text" name="query" autocomplete="off" value="{{request['query']}}">
+            <div class="bar-el">
+                <label for="low_interest" class="ch">| Низкий интерес</label>
+                {% if request['interests'][0] %}
+                    <input type="checkbox" name="low_interest" checked>
+                {% else %}
+                    <input type="checkbox" name="low_interest">
+                {% endif %}
+
+                <label for="medium_interest" class="ch">| Средний интерес</label>
+
+                {% if request['interests'][1] %}
+                    <input type="checkbox" name="medium_interest" checked>
+                {% else %}
+                    <input type="checkbox" name="medium_interest">
+                {% endif %}
+
+                <label for="high_interest" class="ch">| Высокий интерес</label>
+
+                {% if request['interests'][2] %}
+                    <input type="checkbox" name="high_interest" checked>
+                {% else %}
+                    <input type="checkbox" name="high_interest">
+                {% endif %}
+            </div>
+            <label for="order_by">Сортировать по:</label>
+
+
+
+            <select name="order_by" class="bar-el">
+                {% if request['order_by']=='pub_date' %}
+                    <option value="pub_date" selected="selected">Дата публикации</option>
+                    <option value="rating">Рейтинг</option>
+                {% else %}
+                    <option value="pub_date">Дата публикации</option>
+                    <option value="rating" selected="selected">Рейтинг</option>
+                {% endif %}
+            </select>
+            <select name="order_desc" class="bar-el">
+                {% if request['order_desc']==1 %}
+                    <option value="1" selected="selected">По убыванию</option>
+                    <option value="0">По возрастанию</option>
+                {% else %}
+                    <option value="1">По убыванию</option>
+                    <option value="0" selected="selected">По возрастанию</option>
+                {% endif %}
+            </select>
+            <button class="bar-el ssub">Применить</button>
+        </form>
+    </div>
+    {% for year in years %}
+    <div class="year-block">
+        <h2 onclick="showhide_year(`{{year.num}}`)" id="year_title_{{year.num}}">{{year.num}} ▼</h2>
+        <div class=" cover-container" id="{{year.num}}">
+            {% for card in year.cards %}
+            <div class="cover-item">
+                <h3><a href="/post/{{card.id}}" class="post-title hov-link"><p class="multiline">{{card.title}}</p></a></h3>
+                <h5 class="rating">{{card.rating}}</h5>
+                <p>{{card.date}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <script>
+        function showhide_year(year_num) {
+            el = document.getElementById(year_num)
+            header = document.getElementById("year_title_" + year_num)
+            console.log(header)
+            style = getComputedStyle(el)
+            if (style.display == "block") {
+                el.style.display = "none"
+                header.innerHTML = year_num + " —"
+            } else {
+                el.style.display = "block"
+                header.innerHTML = year_num + " ▼"
+            }
+        }
+    </script>
+</body>
+
+</html>

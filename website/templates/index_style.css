@@ -1,0 +1,147 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.hov-link:hover {
+    color: green;
+}
+
+.cover-container {
+    height: 250px;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.cover-item h3 {
+    height: 40%;
+    overflow-y: hidden;
+}
+
+.cover-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    padding: 10px 10px;
+    box-shadow: 2px 2px 4px #bbb;
+    border-top-right-radius: 4px;
+    box-sizing: content-box;
+    max-width: 200px;
+    height: 90%;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.year-block {
+    padding: 20px 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.bar-el-b {
+    display: block;
+}
+
+.bar-el {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+button,
+select {
+    background: white;
+    border: solid 1px;
+    padding: 5px 10px;
+}
+
+button:focus {
+    background: whitesmoke;
+}
+
+.search-panel {
+    margin-left: 20px;
+    font-size: 12pt;
+}
+
+.ssub {
+    margin-left: 10px;
+}
+
+.rating {
+    color: green;
+    font-size: inherit;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.groups-link {
+    margin-left: 50px;
+}
+
+.title_card {
+    word-break: break-all;
+    overflow-x: hidden;
+    width: 100%;
+    height: 60%;
+    overflow-y: hidden;
+    margin: 0;
+}
+
+.news-card h4 {
+    margin: 10px;
+    color: green;
+}
+
+.news-card h5 {
+    margin: 10px;
+}
+
+.multiline {
+    white-space: pre-wrap;
+    word-break: normal;
+}
+
+.link_div {
+    width: 100%;
+    word-break: break-all;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.link_div a {
+    width: 100%;
+}
+
+.multiline {
+    width: 100%;
+    white-space: pre-wrap;
+    word-break: normal;
+}
+
+.cards-container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 60%;
+    margin-left: 5%;
+    height: 240px;
+    white-space: nowrap;
+}
+
+.news-title {
+    word-break: break-all;
+    height: 100%;
+    width: 200px;
+}
+
+.news-title:hover {
+    color: green;
+}
